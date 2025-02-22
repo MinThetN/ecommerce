@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  /* color: var(--foreground); */
+  /* background: var(--background); */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+*{
+  @apply font-rubik
+}
+
+.container{
+  @apply max-w-[600px] px-3 md:max-w-[1280px] md:px-0 m-auto
+}
+
+.cart-item {
+  @apply absolute text-[12px] text-white top-0 right-[-5px] bg-red-500 w-6 h-6 flex 
+  items-center justify-center rounded-3xl
+}
+
+.hero-section {
+  @apply w-full md:h-[400px] h-[200px] flex items-center
+}
+
+.hero-container {
+  @apply w-full md:max-w-[1024px] max-w-[600px] m-auto flex justify-center items-center relative
+}
+
+.hero-framer {
+  @apply absolute md:mt-[300px] mt-[160px] md:w-[500px] w-[250px]
+}
