@@ -36,7 +36,7 @@ body {
 }
 
 .hero-section {
-  @apply w-full md:h-[400px] h-[200px] flex items-center
+  @apply w-full md:h-[300px] h-[200px] flex items-center
 }
 
 .hero-container {

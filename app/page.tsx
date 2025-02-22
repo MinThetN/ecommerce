@@ -3,6 +3,7 @@ import { groq } from "next-sanity";
 import { client } from "@/sanity/lib/client";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Products from "./components/Products";
 
 export default async function Home() {
 
@@ -13,7 +14,7 @@ export default async function Home() {
     <div>
       <Navbar />
       <Hero />
-      <h1 className="text-3xl"> hello world </h1>
+      <Products />
     </div>
   );
 }
