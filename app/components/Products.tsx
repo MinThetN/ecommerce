@@ -19,7 +19,6 @@ const Products = async () => {
                 {products.map((product:any,index:number) => (
                     <Card key={index} product={product} />
                 ))}
-                
             </div>
         </div>
     </div>

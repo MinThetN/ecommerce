@@ -17,7 +17,7 @@ const ProductDetails = ({product}:any) => {
         {/* Left side: Product Image */}
         <div>
           {/* Product Image top */}
-          <div className="bg-neutral-200 shadow-2xl rounded-xl p-6 mb-4">
+          <div className="bg-neutral-200 shadow-2xl rounded-3xl p-6 mb-4">
             {product?.images && (
               <Image
                 loader={()=>urlFor(product.images[selectedImageIndex]).url()}
@@ -30,7 +30,7 @@ const ProductDetails = ({product}:any) => {
             )}
           </div>
           {/* Product Image bottom */}
-          <div className='grid grid-cols-4 gap-4'>
+          <div className='grid grid-cols-4 py-5 gap-4'>
             {product.images?.map((item:any,index:number) => (
               <Image
                 key={index}
@@ -54,24 +54,26 @@ const ProductDetails = ({product}:any) => {
           {/* Quantity Controls */}
           <div className="flex items-center gap-4">
             <span className="text-lg font-medium">Quantity:</span>
-            <div className="flex items-center gap-3 bg-neutral-200 rounded-lg px-4 py-2">
+            <div className="flex items-center gap-3 bg-neutral-200 rounded-3xl px-4 py-2">
               <button
                 onClick={decrementQuantity}
-                className="text-xl hover:bg-slate-200 hover:rounded-xl transition-colors"
+                className="text-2xl hover:bg-slate-300 hover:rounded-xl transition-colors"
               >
                 <FiMinus />
               </button>
               <span className="text-xl font-medium min-w-[20px] text-center">{quantity}</span>
               <button
                 onClick={incrementQuantity}
-                className="text-xl hover:bg-neutral-200 hover:rounded-xl transition-colors"
+                className="text-2xl hover:bg-slate-300 hover:rounded-xl transition-colors"
               >
                 <FiPlus />
               </button>
             </div>
           </div>
 
-          <button className="bg-black text-white py-3 px-8 rounded-lg hover:opacity-90 w-fit text-lg font-medium">
+          <button className="bg-black text-white py-3 px-8 rounded-3xl hover:bg-zinc-100 
+                            hover:text-black hover:border-black border-2 border-black transition-colors
+                              w-fit text-lg font-medium">
             Add to Cart
           </button>
         </div>
