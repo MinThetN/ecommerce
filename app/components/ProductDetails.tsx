@@ -54,17 +54,17 @@ const ProductDetails = ({product}:any) => {
           {/* Quantity Controls */}
           <div className="flex items-center gap-4">
             <span className="text-lg font-medium">Quantity:</span>
-            <div className="flex items-center gap-3 bg-neutral-100 rounded-lg px-4 py-2">
+            <div className="flex items-center gap-3 bg-neutral-200 rounded-lg px-4 py-2">
               <button
                 onClick={decrementQuantity}
-                className="text-xl hover:text-gray-600 transition-colors"
+                className="text-xl hover:bg-slate-200 hover:rounded-xl transition-colors"
               >
                 <FiMinus />
               </button>
               <span className="text-xl font-medium min-w-[20px] text-center">{quantity}</span>
               <button
                 onClick={incrementQuantity}
-                className="text-xl hover:text-gray-600 transition-colors"
+                className="text-xl hover:bg-neutral-200 hover:rounded-xl transition-colors"
               >
                 <FiPlus />
               </button>
