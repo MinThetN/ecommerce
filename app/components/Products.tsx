@@ -8,6 +8,7 @@ const Products = async () => {
     const products = await client.fetch(groq`*[_type == "product"]`)
 
   return (
+    
     <div className='w-full py-10 mt-[50px]'>
         <div className='container'>
             <div className=''>

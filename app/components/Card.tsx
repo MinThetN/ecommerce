@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const Card = ({product}:any) => {
   return (
-    <Link href={`/product/${product.slug.current}`} >
+    <Link href={`/product/${encodeURIComponent(product.slug.current)}`} >
         <div key={product._id} className='bg-neutral-300 hover:bg-slate-50 py-10 px-3 rounded-xl drop-shadow-lg overflow-hidden'>
             <Image src={urlFor(product.images && product.images[0]).url()}
                 alt='product'

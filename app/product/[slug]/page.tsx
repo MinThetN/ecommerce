@@ -1,20 +1,34 @@
-'use client'
 import Navbar from '@/app/components/Navbar'
 import ProductDetails from '@/app/components/ProductDetails'
-import React from 'react'
+import { client } from '@/sanity/lib/client'
+import { groq } from 'next-sanity'
 
-const page = () => {
-    
-    // const {slug}:any = useParams();
-    // const products = await client.fetch(groq`*[_type == "product"]`)
-    // const product = products.find((product:any)=>product.slug.current == slug)
-    // console.log(product)
-  return (
-    <>
-        <Navbar />
-        <ProductDetails />
-    </>
-  )
+async function getProduct(slug: string) {
+    console.log('Fetching product with slug:', slug)
+    const query = groq`*[_type == "product" && slug.current == $slug][0]`
+    console.log('Executing query:', query)
+    const product = await client.fetch(query, {
+        slug: slug
+    })
+    console.log('Found product:', product)
+    return product
 }
 
-export default page
+export default async function Page({ params }: { params: { slug: string } }) {
+    const product = await getProduct(decodeURIComponent(params.slug))
+
+    if (!product) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <p className="text-xl font-semibold">Product not found</p>
+            </div>
+        )
+    }
+
+    return (
+        <>
+            <Navbar />
+            <ProductDetails product={product} />
+        </>
+    )
+}
