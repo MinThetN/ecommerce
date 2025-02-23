@@ -1,12 +1,15 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { FiMinus, FiPlus } from 'react-icons/fi';
+import { CartContext } from '../context/CartContext';
 
 const ProductDetails = ({product}:any) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const {cartItems, addProduct}:any = useContext(CartContext);
+  console.log("cartItems: ", cartItems);
 
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => prev > 1 ? prev - 1 : 1);
@@ -73,7 +76,7 @@ const ProductDetails = ({product}:any) => {
 
           <button className="bg-black text-white py-3 px-8 rounded-3xl hover:bg-zinc-100 
                             hover:text-black hover:border-black border-2 border-black transition-colors
-                              w-fit text-lg font-medium">
+                              w-fit text-lg font-medium" onClick={()=>addProduct(product, quantity)}>
             Add to Cart
           </button>
         </div>

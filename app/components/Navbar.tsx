@@ -1,22 +1,31 @@
+'use client'
 import Link from 'next/link';
-import React from 'react'
+import React, { useContext } from 'react'
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import Cart from './Cart';
+import { CartContext } from '../context/CartContext';
+
 
 const Navbar = () => {
+  // go to cart
+  const {showCart, setShowCart}:any = useContext(CartContext);
+  const handleClick = () => {
+    setShowCart(!showCart); 
+  }
   return (
     <>
       <div className='w-full h-[80px] bg-gray-100'>
           <div className='container font-bold text-3xl text-gray-800 w-full h-full
                           items-center flex justify-between'>
               <Link href={'/'} className='cursor-pointer text-gray-700'>MTNstore</Link>
-              <div className='relative text-4xl'>
+              <div className='relative text-4xl' onClick={handleClick}>
                   <HiOutlineShoppingBag/>
                   <button className='cart-item '> 0 </button>
               </div>
           </div>
       </div>
-      <Cart />
+      {/* show cart if showCart is true */}
+      {showCart && <Cart />} 
     </>
     
   )
