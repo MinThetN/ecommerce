@@ -92,3 +92,26 @@ body {
 .empty-cart h3{
   @apply text-xl font-semibold;
 }
+
+.item-desc .flex{
+  display: flex;
+  justify-content: space-between;
+  color: #324d67;
+}
+
+.item-desc .bottom{
+  margin-top: 60px;
+}
+
+.top{
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.flex h5{
+  font-size: 24px;
+}
+
+.flex h4{
+  font-size: 20px;
+}

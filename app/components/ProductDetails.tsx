@@ -57,26 +57,27 @@ const ProductDetails = ({product}:any) => {
           {/* Quantity Controls */}
           <div className="flex items-center gap-4">
             <span className="text-lg font-medium">Quantity:</span>
-            <div className="flex items-center gap-3 bg-neutral-200 rounded-3xl px-4 py-2">
+            <div className="flex items-center gap-3 bg-neutral-300 rounded-3xl px-3 py-2">
               <button
                 onClick={decrementQuantity}
-                className="text-2xl hover:bg-slate-300 hover:rounded-xl transition-colors"
+                className="text-xl hover:bg-neutral-400 p-2 rounded-full transition-colors"
               >
                 <FiMinus />
               </button>
               <span className="text-xl font-medium min-w-[20px] text-center">{quantity}</span>
               <button
                 onClick={incrementQuantity}
-                className="text-2xl hover:bg-slate-300 hover:rounded-xl transition-colors"
+                className="text-xl hover:bg-neutral-400 p-2 rounded-full transition-colors"
               >
                 <FiPlus />
               </button>
             </div>
           </div>
 
-          <button className="bg-black text-white py-3 px-8 rounded-3xl hover:bg-zinc-100 
-                            hover:text-black hover:border-black border-2 border-black transition-colors
-                              w-fit text-lg font-medium" onClick={()=>addProduct(product, quantity)}>
+          <button className="bg-black text-white py-3 px-8 rounded-3xl transform transition-all duration-300 
+                            hover:bg-zinc-100 hover:text-black hover:border-black border-2 border-black 
+                            hover:scale-[1.02] active:scale-[0.9] hover:shadow-lg
+                            w-fit text-lg font-medium" onClick={()=>addProduct(product, quantity)}>
             Add to Cart
           </button>
         </div>

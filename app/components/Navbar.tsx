@@ -8,7 +8,7 @@ import { CartContext } from '../context/CartContext';
 
 const Navbar = () => {
   // go to cart
-  const {showCart, setShowCart}:any = useContext(CartContext);
+  const {totalQuantity, showCart, setShowCart}:any = useContext(CartContext);
   const handleClick = () => {
     setShowCart(!showCart); 
   }
@@ -20,7 +20,7 @@ const Navbar = () => {
               <Link href={'/'} className='cursor-pointer text-gray-700'>MTNstore</Link>
               <div className='relative text-4xl' onClick={handleClick}>
                   <HiOutlineShoppingBag/>
-                  <button className='cart-item '> 0 </button>
+                  <button className='cart-item'>{totalQuantity}</button>
               </div>
           </div>
       </div>
