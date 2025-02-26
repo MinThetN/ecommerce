@@ -31,7 +31,7 @@ body {
 }
 
 .cart-item {
-  @apply absolute text-[12px] text-white top-0 right-[-5px] bg-red-500 w-6 h-6 flex 
+  @apply absolute text-[12px] text-white top-1 right-[-1px] bg-red-500 w-6 h-6 flex 
   items-center justify-center rounded-3xl
 }
 

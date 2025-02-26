@@ -18,7 +18,7 @@ const Navbar = () => {
           <div className='container font-bold text-3xl text-gray-800 w-full h-full
                           items-center flex justify-between'>
               <Link href={'/'} className='cursor-pointer text-gray-700'>MTNstore</Link>
-              <div className='relative text-4xl' onClick={handleClick}>
+              <div className='relative text-4xl cursor-pointer hover:bg-neutral-300 p-2 rounded-full' onClick={handleClick}>
                   <HiOutlineShoppingBag/>
                   <button className='cart-item'>{totalQuantity}</button>
               </div>

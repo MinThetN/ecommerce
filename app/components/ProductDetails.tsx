@@ -57,7 +57,7 @@ const ProductDetails = ({product}:any) => {
           {/* Quantity Controls */}
           <div className="flex items-center gap-4">
             <span className="text-lg font-medium">Quantity:</span>
-            <div className="flex items-center gap-3 bg-neutral-300 rounded-3xl px-3 py-2">
+            <div className="flex items-center border-1 border-black gap-3 bg-neutral-300 rounded-3xl px-3 py-2">
               <button
                 onClick={decrementQuantity}
                 className="text-xl hover:bg-neutral-400 p-2 rounded-full transition-colors"
@@ -74,10 +74,12 @@ const ProductDetails = ({product}:any) => {
             </div>
           </div>
 
-          <button className="bg-black text-white py-3 px-8 rounded-3xl transform transition-all duration-300 
-                            hover:bg-zinc-100 hover:text-black hover:border-black border-2 border-black 
-                            hover:scale-[1.02] active:scale-[0.9] hover:shadow-lg
-                            w-fit text-lg font-medium" onClick={()=>addProduct(product, quantity)}>
+          <button className="w-[235px] relative py-4 px-8 text-black text-base font-bold overflow-hidden
+                        bg-white border-2 rounded-full transition-all duration-400 ease-in-out shadow-md hover:scale-105 
+                        hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full 
+                        before:w-full before:h-full before:bg-gradient-to-r before:from-neutral-900 before:to-neutral-500 
+                        before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0" 
+                        onClick={()=>addProduct(product, quantity)}>
             Add to Cart
           </button>
         </div>
@@ -87,3 +89,7 @@ const ProductDetails = ({product}:any) => {
 };
 
 export default ProductDetails;
+// bg-black text-white py-3 px-8 rounded-3xl transform transition-all duration-300 
+// hover:bg-zinc-100 hover:text-black hover:border-black border-2 border-black 
+// hover:scale-[1.02] active:scale-[0.9] hover:shadow-lg
+// w-fit text-lg font-medium
