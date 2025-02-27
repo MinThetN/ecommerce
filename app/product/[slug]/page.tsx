@@ -14,7 +14,13 @@ async function getProduct(slug: string) {
     return product
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+type Props = {
+    params: {
+        slug: string
+    }
+}
+
+export default async function Page({ params }: Props) {
     const product = await getProduct(decodeURIComponent(params.slug))
 
     if (!product) {
