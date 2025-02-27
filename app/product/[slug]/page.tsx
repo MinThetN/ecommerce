@@ -14,11 +14,10 @@ async function getProduct(slug: string) {
     return product
 }
 
-type Props = {
+interface Props {
     params: {
         slug: string
-    },
-    searchParams: { [key: string]: string | string[] | undefined }
+    }
 }
 
 export default async function Page({ params }: Props) {
