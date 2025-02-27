@@ -10,15 +10,15 @@ const Footer = () => {
         {/* Social Media Icons */}
         <div className='flex gap-6'>
           <a href='https://facebook.com' target='_blank' rel='noopener noreferrer' 
-             className='text-2xl text-gray-600 hover:text-gray-900 transition-colors'>
+             className='text-2xl text-gray-600 hover:text-gray-900 hover:scale-110 transform transition-all duration-200'>
             <FaFacebookF />
           </a>
           <a href='https://instagram.com' target='_blank' rel='noopener noreferrer'
-             className='text-2xl text-gray-600 hover:text-gray-900 transition-colors'>
+             className='text-2xl text-gray-600 hover:text-gray-900 hover:scale-110 transform transition-all duration-200'>
             <FaInstagram />
           </a>
           <a href='https://tiktok.com' target='_blank' rel='noopener noreferrer'
-             className='text-2xl text-gray-600 hover:text-gray-900 transition-colors'>
+             className='text-2xl text-gray-600 hover:text-gray-900 hover:scale-110 transform transition-all duration-200'>
             <FaTiktok />
           </a>
         </div>
