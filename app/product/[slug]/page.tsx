@@ -4,7 +4,18 @@ import { client } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { notFound } from 'next/navigation'
 
-async function getProduct(slug: string) {
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  description: string;
+  images: any[];
+  slug: {
+    current: string;
+  };
+}
+
+async function getProduct(slug: string): Promise<Product | null> {
     const query = groq`*[_type == "product" && slug.current == $slug][0]`
     const product = await client.fetch(query, { slug })
     return product
@@ -14,7 +25,7 @@ interface PageProps {
     params: {
         slug: string;
     };
-    searchParams?: { [key: string]: string | string[] | undefined };
+    searchParams?: Record<string, string | string[] | undefined>;
 }
 
 export default async function ProductPage({ params }: PageProps) {
