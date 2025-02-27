@@ -1,21 +1,50 @@
 'use client';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import { CartContext } from '../context/CartContext';
+import { ImCheckmark } from "react-icons/im";
+import { motion } from 'framer-motion';
 
 const ProductDetails = ({product}:any) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [showNotification, setShowNotification] = useState(false);
   const {cartItems, addProduct}:any = useContext(CartContext);
-  console.log("cartItems: ", cartItems);
 
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => prev > 1 ? prev - 1 : 1);
 
+  const handleAddToCart = () => {
+    addProduct(product, quantity);
+    setShowNotification(true);
+  };
+
+  useEffect(() => {
+    if (showNotification) {
+      const timer = setTimeout(() => {
+        setShowNotification(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [showNotification]);
+
   return (
     <div className="container py-10">
+      {showNotification && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.5 }}
+          className="fixed inset-0 flex items-center justify-center z-50"
+        >
+          <div className="bg-emerald-500 text-white px-8 py-6 rounded-xl shadow-xl flex items-center gap-2">
+            <ImCheckmark className="text-xl" />
+            <span className="text-xl font-medium">Item added to cart!</span>
+          </div>
+        </motion.div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Left side: Product Image */}
         <div>
@@ -79,7 +108,7 @@ const ProductDetails = ({product}:any) => {
                         hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full 
                         before:w-full before:h-full before:bg-gradient-to-r before:from-neutral-900 before:to-neutral-500 
                         before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0" 
-                        onClick={()=>addProduct(product, quantity)}>
+                        onClick={handleAddToCart}>
             Add to Cart
           </button>
         </div>
