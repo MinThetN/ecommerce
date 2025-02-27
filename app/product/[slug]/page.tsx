@@ -20,10 +20,10 @@ interface Props {
     params: {
         slug: string
     }
-    searchParams: { [key: string]: string | string[] | undefined }
+    searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-export default async function ProductPage({ params, searchParams }: Props) {
+export default async function ProductPage({ params }: Props) {
     const product = await getProduct(decodeURIComponent(params.slug))
 
     if (!product) {
