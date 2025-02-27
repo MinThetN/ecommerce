@@ -16,8 +16,10 @@ async function getProduct(slug: string) {
     }
 }
 
-type Props = {
-    params: { slug: string }
+interface Props {
+    params: {
+        slug: string
+    }
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
