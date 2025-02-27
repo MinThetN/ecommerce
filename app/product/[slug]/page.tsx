@@ -41,6 +41,3 @@ export const generateStaticParams = async () => {
         slug: product.slug.current
     }))
 }
-
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
