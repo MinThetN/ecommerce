@@ -4,6 +4,8 @@ import { client } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { notFound } from 'next/navigation'
 
+export const dynamicParams = false; // <-- Add this
+
 interface Product {
   _id: string;
   name: string;
@@ -16,44 +18,39 @@ interface Product {
 }
 
 async function getProduct(slug: string): Promise<Product | null> {
-    const query = groq`*[_type == "product" && slug.current == $slug][0]`
-    const product = await client.fetch(query, { slug })
-    return product
+  const query = groq`*[_type == "product" && slug.current == $slug][0]`
+  const product = await client.fetch(query, { slug })
+  return product
 }
 
 interface PageProps {
-    params: {
-        slug: string;
-    };
-    searchParams?: Record<string, string | string[] | undefined>;
+  params: {
+    slug: string;
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
 }
 
 export default async function ProductPage({ params }: PageProps) {
-    // Decode the slug from the URL
-    const slug = decodeURIComponent(params.slug);
+  const slug = decodeURIComponent(params.slug);
+  const product = await getProduct(slug);
 
-    // Fetch the product using the slug
-    const product = await getProduct(slug);
+  if (!product) {
+    notFound();
+  }
 
-    // If the product doesn't exist, return a 404
-    if (!product) {
-        notFound();
-    }
-
-    return (
-        <>
-            <Navbar />
-            <ProductDetails product={product} />
-        </>
-    )
+  return (
+    <>
+      <Navbar />
+      <ProductDetails product={product} />
+    </>
+  )
 }
 
-export const generateStaticParams = async () => {
-    const query = groq`*[_type == "product"]{
-        slug
-    }`
-    const products = await client.fetch(query)
-    return products.map((product: { slug: { current: string } }) => ({
-        slug: product.slug.current
-    }))
+export async function generateStaticParams() {
+  const query = groq`*[_type == "product"]{ slug }`
+  const products = await client.fetch(query);
+
+  return products.map((p: { slug: { current: string } }) => ({
+    slug: p.slug.current
+  }));
 }
