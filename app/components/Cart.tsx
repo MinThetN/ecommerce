@@ -37,12 +37,12 @@ const Cart = () => {
   }
 
   return (
-    <div className='cart-wrapper'>
-      <div className='cart-container'>
-        <button className='cart-heading' onClick={handleClose}>
-            <IoMdArrowRoundBack className='hover:bg-neutral-300 rounded-full'/>
-            <span className='heading'>Your Cart</span>
-            <span className='cart-num-items font-semibold'> ( {totalQuantity} items )</span>
+    <div className='cart-wrapper fixed top-0 right-0 w-full h-screen bg-black/50 z-50'>
+      <div className='cart-container fixed top-0 right-0 w-full sm:w-[450px] h-screen bg-white px-4 py-6'>
+        <button className='cart-heading flex items-center gap-2 mb-6' onClick={handleClose}>
+            <IoMdArrowRoundBack className='text-2xl hover:bg-neutral-300 rounded-full'/>
+            <span className='heading text-xl font-semibold'>Your Cart</span>
+            <span className='cart-num-items font-medium text-gray-600'> ( {totalQuantity} items )</span>
         </button>
 
         <div className='flex flex-col h-[calc(100vh-120px)]'>
@@ -55,11 +55,11 @@ const Cart = () => {
             </div>
           ) : (
             <>
-              <div className='flex-1 overflow-auto px-4 py-2'>
+              <div className='flex-1 overflow-auto px-0 sm:px-4 py-2'>
                 <div className='space-y-4'>
-                  {cartItems.map((product:any)=>(
-                    <div className='flex items-center gap-4 bg-white p-4 rounded-xl shadow-md' key={product._id}>
-                      <div className='w-24 h-24 bg-neutral-100 rounded-lg overflow-hidden'>
+                  {cartItems.map((product:any)=>(                    
+                    <div className='flex items-center gap-3 bg-white p-3 sm:p-4 rounded-xl shadow-md' key={product._id}>
+                      <div className='w-20 h-20 sm:w-24 sm:h-24 bg-neutral-100 rounded-lg overflow-hidden flex-shrink-0'>
                         <Image
                           loader={()=>urlFor(product.images[0]).url()}
                           src={urlFor(product.images[0]).url()}
@@ -69,18 +69,18 @@ const Cart = () => {
                           className="object-contain w-full h-full"
                         />
                       </div>
-                      <div className='flex-1 space-y-2'>
-                        <h3 className='text-lg font-semibold text-gray-800'>{product.name}</h3>
-                        <p className='text-xl font-bold text-blue-950'>${product.price}</p>
-                        <div className='flex items-center gap-3'>
-                          <div className='flex items-center gap-2 bg-neutral-100 rounded-3xl px-2 py-1'>
+                      <div className='flex-1 min-w-0 space-y-2'>
+                        <h3 className='text-base sm:text-lg font-semibold text-gray-800 truncate'>{product.name}</h3>
+                        <p className='text-lg sm:text-xl font-bold text-blue-950'>${product.price}</p>
+                        <div className='flex items-center gap-2 sm:gap-3 flex-wrap'>
+                          <div className='flex items-center gap-1 sm:gap-2 bg-neutral-100 rounded-3xl px-2 py-1'>
                             <button
                               onClick={() => updateItemQuantity(product._id, (product.quantity || 1) - 1)}
                               className='text-lg hover:bg-neutral-300 p-2 rounded-full transition-colors'
                             >
                               <FiMinus />
                             </button>
-                            <span className='text-md font-medium min-w-[20px] text-center'>{product.quantity || 1}</span>
+                            <span className='text-sm sm:text-md font-medium min-w-[20px] text-center'>{product.quantity || 1}</span>
                             <button
                               onClick={() => updateItemQuantity(product._id, (product.quantity || 1) + 1)}
                               className='text-lg hover:bg-neutral-300 p-2 rounded-full transition-colors'
@@ -90,7 +90,7 @@ const Cart = () => {
                           </div>
                           <button
                             onClick={() => removeItem(product._id)}
-                            className='text-red-500 hover:bg-red-500 hover:text-white rounded-full p-2 text-lg transition-colors'
+                            className='text-red-500 hover:bg-red-500 hover:text-white rounded-full p-1.5 sm:p-2 text-lg transition-colors'
                           >
                             <ImBin />
                           </button>
@@ -102,8 +102,8 @@ const Cart = () => {
               </div>
               <div className='border-t bg-white px-4 py-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'>
                 <div className='flex justify-between items-center mb-4'>
-                  <span className='text-lg font-semibold'>Subtotal</span>
-                  <span className='text-xl font-bold'>${cartItems.reduce((total:number, item:any) => total + (item.price * (item.quantity || 1)), 0).toFixed(2)}</span>
+                  <span className='text-base sm:text-lg font-semibold'>Subtotal</span>
+                  <span className='text-lg sm:text-xl font-bold'>${cartItems.reduce((total:number, item:any) => total + (item.price * (item.quantity || 1)), 0).toFixed(2)}</span>
                 </div>
                 <button className='text-xl w-full h-12 rounded-3xl bg-neutral-900 text-white relative overflow-hidden group z-10
                                 hover:text-white duration-1000 hover:scale-[1.05] active:scale-[1.2]'
