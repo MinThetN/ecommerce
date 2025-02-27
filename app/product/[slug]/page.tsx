@@ -29,10 +29,15 @@ interface PageProps {
 }
 
 export default async function ProductPage({ params }: PageProps) {
-    const product = await getProduct(decodeURIComponent(params.slug))
+    // Decode the slug from the URL
+    const slug = decodeURIComponent(params.slug);
 
+    // Fetch the product using the slug
+    const product = await getProduct(slug);
+
+    // If the product doesn't exist, return a 404
     if (!product) {
-        notFound()
+        notFound();
     }
 
     return (
