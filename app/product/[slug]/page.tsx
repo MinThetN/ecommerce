@@ -16,14 +16,13 @@ async function getProduct(slug: string) {
     }
 }
 
-interface Props {
+interface PageProps {
     params: {
         slug: string
-    },
-    searchParams: { [key: string]: string | string[] | undefined }
+    }
 }
 
-export default async function ProductPage({ params }: { params: Props['params'] }) {
+export default async function ProductPage({ params }: PageProps) {
     const product = await getProduct(decodeURIComponent(params.slug))
 
     if (!product) {
