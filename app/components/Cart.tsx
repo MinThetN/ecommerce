@@ -14,6 +14,28 @@ const Cart = () => {
   const handleClose = () => {
     setShowCart(!showCart);
   }
+  // api endpoint
+  const handleCheckout = async () => {
+
+    try {
+      const response = await fetch('http://localhost:3000/api/checkout',{
+        method:'POST',
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({products:cartItems}),
+      })
+      const data = await response.json();
+      if(data.url){
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.log('Error during checkout', error)
+    }
+
+    
+  }
+
   return (
     <div className='cart-wrapper'>
       <div className='cart-container'>
@@ -84,7 +106,8 @@ const Cart = () => {
                   <span className='text-xl font-bold'>${cartItems.reduce((total:number, item:any) => total + (item.price * (item.quantity || 1)), 0).toFixed(2)}</span>
                 </div>
                 <button className='text-xl w-full h-12 rounded-3xl bg-neutral-900 text-white relative overflow-hidden group z-10
-                                hover:text-white duration-1000 hover:scale-[1.05] active:scale-[1.2]'>
+                                hover:text-white duration-1000 hover:scale-[1.05] active:scale-[1.2]'
+                                onClick={handleCheckout}>
                   <span className="absolute bg-emerald-600 w-full h-36 rounded-full group-hover:scale-100 scale-0 -z-10 -left-2 -top-10 group-hover:duration-500 duration-700 origin-center transform transition-all"> </span>
                   <span className="absolute bg-emerald-700 w-full h-36 -left-0 -top-10 rounded-full group-hover:scale-100 scale-0 -z-10 group-hover:duration-700 duration-500 origin-center transform transition-all"></span>
                   Pay Now

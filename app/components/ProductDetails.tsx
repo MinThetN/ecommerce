@@ -118,7 +118,3 @@ const ProductDetails = ({product}:any) => {
 };
 
 export default ProductDetails;
-// bg-black text-white py-3 px-8 rounded-3xl transform transition-all duration-300 
-// hover:bg-zinc-100 hover:text-black hover:border-black border-2 border-black 
-// hover:scale-[1.02] active:scale-[0.9] hover:shadow-lg
-// w-fit text-lg font-medium
