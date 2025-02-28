@@ -1,8 +1,8 @@
-import Navbar from '@/app/components/Navbar'
-import ProductDetails from '@/app/components/ProductDetails'
-import { client } from '@/sanity/lib/client'
-import { groq } from 'next-sanity'
-import { notFound } from 'next/navigation'
+import Navbar from "@/app/components/Navbar";
+import ProductDetails from "@/app/components/ProductDetails";
+import { client } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+import { notFound } from "next/navigation";
 
 // Tell Next.js that only the slugs returned by `generateStaticParams` are valid
 export const dynamicParams = false;
@@ -19,21 +19,21 @@ interface Product {
 }
 
 async function getProduct(slug: string): Promise<Product | null> {
-  const query = groq`*[_type == "product" && slug.current == $slug][0]`
+  const query = groq`*[_type == "product" && slug.current == $slug][0]`;
   return await client.fetch(query, { slug });
 }
 
-// Inline the prop types for `params` and `searchParams` here
+// Updated prop types for `params`
 export default async function ProductPage({
   params,
 }: {
-  params: { slug: string };
-  searchParams?: Record<string, string | string[] | undefined>;
+  params: Promise<{ slug: string }>;
 }) {
-  // Safely decode the slug
-  const slug = decodeURIComponent(params.slug);
+  // Await the params before accessing slug
+  const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug);
 
-  const product = await getProduct(slug);
+  const product = await getProduct(decodedSlug);
   if (!product) {
     notFound();
   }
@@ -47,7 +47,7 @@ export default async function ProductPage({
 }
 
 export async function generateStaticParams() {
-  const query = groq`*[_type == "product"]{ slug }`
+  const query = groq`*[_type == "product"]{ slug }`;
   const products = await client.fetch(query);
 
   // Return an array of valid slugs
