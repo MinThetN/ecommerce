@@ -1,5 +1,5 @@
 <div>
-  <p> Nextjs + Typescript + TaidwindCss + Sanity + Stripe </p>
+  <p> Nextjs + Typescript + tailwindcss + Sanity + Stripe </p>
 </div>
 
 
